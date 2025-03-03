@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt") // 直接使用 id，避免冲突
 }
 
 android {
@@ -13,7 +14,6 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -30,11 +30,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -47,9 +47,21 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
+    }
+    ndkVersion = "28.0.12674087 rc2"
+    buildToolsVersion = "36.0.0 rc1"
 }
 
 dependencies {
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.client.okhttp)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -59,6 +71,11 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.room.common)
+    implementation(libs.androidx.room.ktx)
+    //noinspection KaptUsageInsteadOfKsp
+    kapt(libs.androidx.room.compiler) // 添加 Room Compiler
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
