@@ -1,0 +1,30 @@
+{
+  "environments": {
+    "intranet": "http://jw.nnnu.edu.cn/jsxsd/",
+    "extranet": "http://jw-nnnu-edu-cn.atrust.nnnu.edu.cn/jsxsd/"
+  },
+  "defaultEnvironment": "extranet",
+  "normalLogin": {
+    "servlet": "verifycode.servlet",
+    "login": "xk/LoginToXk"
+  },
+  "tyLogin": {
+    "baseUrl": "https://sso.nnnu.edu.cn/",
+    "loginIndex": "https://sso.nnnu.edu.cn/login?service=http:%2F%2Fjw.nnnu.edu.cn%2Fsso.jsp",
+    "host": "sso.nnnu.edu.cn",
+    "csrfJs": "public/deploy/deploy.js?",
+    "login": "login"
+  },
+  "season": "2024-2025-1",
+  "endpoints": {
+    "allScore": "kscj/cjcx_list?xsfs=all",
+    "allScorePDF":"kscj/printXscjk",
+    "trainPlan": "pyfa/pyfa_query",
+    "webScore": "kscj/cjcx_list?xsfs=all&kksj=",
+    "examSchedule": "xsks/xsksap_list",
+    "tomorrowSchedule": "/schedule/tomorrow",
+    "profile": "yxszzy/yxszzy_grxx_ck",
+    "weekSchedule": "/schedule/week",
+    "courseSelect": "kscj/cjcx_list?xsfs=all"
+  }
+}
